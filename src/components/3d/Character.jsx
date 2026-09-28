@@ -1,8 +1,8 @@
+
 import { useEffect, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import gsap from "gsap";
-
 
 /*
 ============================================================
@@ -11,8 +11,12 @@ ROBOT PART
 
 Lightweight assembly animation.
 
-Expensive shadow calculations removed.
-Geometry complexity reduced.
+Performance optimizations:
+- Reduced geometry complexity
+- No shadows
+- GSAP timeline cleaned properly
+- Reduced-motion support
+- Mobile-friendly animation handling
 ============================================================
 */
 
@@ -31,8 +35,9 @@ function RobotPart({
     if (!ref.current) return;
 
     /*
-    Reduced motion:
-    Directly place the object.
+    --------------------------------------------------------
+    REDUCED MOTION
+    --------------------------------------------------------
     */
 
     if (reducedMotion) {
@@ -53,11 +58,10 @@ function RobotPart({
       return;
     }
 
-
     /*
-    ========================================================
+    --------------------------------------------------------
     START POSITIONS
-    ========================================================
+    --------------------------------------------------------
     */
 
     const directions = {
@@ -119,11 +123,10 @@ function RobotPart({
     const start =
       directions[from] || directions.random;
 
-
     /*
-    ========================================================
+    --------------------------------------------------------
     INITIAL STATE
-    ========================================================
+    --------------------------------------------------------
     */
 
     ref.current.position.set(
@@ -140,11 +143,10 @@ function RobotPart({
 
     ref.current.scale.setScalar(0.35);
 
-
     /*
-    ========================================================
-    GSAP ASSEMBLY
-    ========================================================
+    --------------------------------------------------------
+    GSAP ASSEMBLY ANIMATION
+    --------------------------------------------------------
     */
 
     const timeline = gsap.timeline({
@@ -153,7 +155,6 @@ function RobotPart({
         ease: "power3.out",
       },
     });
-
 
     timeline.to(
       ref.current.position,
@@ -165,7 +166,6 @@ function RobotPart({
       }
     );
 
-
     timeline.to(
       ref.current.rotation,
       {
@@ -176,7 +176,6 @@ function RobotPart({
       },
       "<"
     );
-
 
     timeline.to(
       ref.current.scale,
@@ -190,6 +189,11 @@ function RobotPart({
       "<"
     );
 
+    /*
+    --------------------------------------------------------
+    CLEANUP
+    --------------------------------------------------------
+    */
 
     return () => {
       timeline.kill();
@@ -202,7 +206,6 @@ function RobotPart({
     from,
     reducedMotion,
   ]);
-
 
   return (
     <group
@@ -269,21 +272,35 @@ export default function Character({
 
 
   /*
-  ============================================================
-  IDLE ANIMATION
-  ============================================================
+  ==========================================================
+  IDLE + SPEAKING ANIMATION
+  ==========================================================
   */
 
   useFrame((state) => {
     if (!robotRef.current) return;
+
+    /*
+    --------------------------------------------------------
+    PERFORMANCE MODE
+    --------------------------------------------------------
+
+    If reduced motion is active and robot is not speaking,
+    there is no reason to continuously update animation.
+    */
+
+    if (reducedMotion && !speaking) {
+      return;
+    }
 
     const time =
       state.clock.elapsedTime;
 
 
     /*
-    Reduced motion:
-    Don't run unnecessary animation.
+    ========================================================
+    IDLE ANIMATION
+    ========================================================
     */
 
     if (!reducedMotion) {
@@ -300,7 +317,7 @@ export default function Character({
 
 
       /*
-      Body rotation
+      Gentle body rotation
       */
 
       robotRef.current.rotation.y =
@@ -345,18 +362,14 @@ export default function Character({
     */
 
     if (chestRef.current) {
-
-      const intensity = speaking
-        ? 1.3 + voiceLevel * 2
-        : 1;
-
       chestRef.current.material.emissiveIntensity =
-        intensity;
+        speaking
+          ? 1.3 + voiceLevel * 2
+          : 1;
     }
 
 
     if (eyeRef.current) {
-
       eyeRef.current.material.emissiveIntensity =
         speaking
           ? 4 + voiceLevel * 3
@@ -838,3 +851,4 @@ export default function Character({
     </group>
   );
 }
+

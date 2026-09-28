@@ -13,32 +13,81 @@ import { useDeviceCapability } from "../hooks/useDeviceCapability.js";
  OPTIMIZED CINEMATIC CAMERA
 ============================================================
 
- Performance changes:
- - Camera movement is very subtle
- - No unnecessary calculations
- - Keeps the cinematic mouse-follow effect
+ Desktop:
+ - Subtle mouse-follow camera
+ - Smooth cinematic movement
+
+ Mobile:
+ - Camera stays static
+ - No unnecessary camera calculations
 ============================================================
 */
 
-function CinematicCamera({ pointer, reduced }) {
+function CinematicCamera({
+  pointer,
+  reduced,
+  isMobile,
+}) {
   const cameraRef = useRef();
 
   useFrame(() => {
-    if (!cameraRef.current || reduced) return;
+    /*
+    ----------------------------------------------------------
+    MOBILE / REDUCED MOTION
+    ----------------------------------------------------------
 
-    const px = pointer?.current?.x ?? 0;
-    const py = pointer?.current?.y ?? 0;
+    Don't run camera animation when it isn't needed.
+    */
 
-    const targetX = px * 0.06;
-    const targetY = py * 0.035;
+    if (
+      !cameraRef.current ||
+      reduced ||
+      isMobile
+    ) {
+      return;
+    }
+
+    const px =
+      pointer?.current?.x ?? 0;
+
+    const py =
+      pointer?.current?.y ?? 0;
+
+    const targetX =
+      px * 0.06;
+
+    const targetY =
+      py * 0.035;
+
+    /*
+    Smooth horizontal movement.
+    */
 
     cameraRef.current.position.x +=
-      (targetX - cameraRef.current.position.x) * 0.025;
+      (targetX -
+        cameraRef.current.position.x) *
+      0.025;
+
+    /*
+    Smooth vertical movement.
+    */
 
     cameraRef.current.position.y +=
-      (0.2 + targetY - cameraRef.current.position.y) * 0.025;
+      (
+        0.2 +
+        targetY -
+        cameraRef.current.position.y
+      ) * 0.025;
 
-    cameraRef.current.lookAt(0, 0.1, 0);
+    /*
+    Keep camera focused on the character.
+    */
+
+    cameraRef.current.lookAt(
+      0,
+      0.1,
+      0
+    );
   });
 
   return (
@@ -63,47 +112,101 @@ export default function HeroScene({
   speaking = false,
   voiceLevel = 0,
 }) {
+  /*
+  ----------------------------------------------------------
+  DEVICE CAPABILITY
+  ----------------------------------------------------------
+  */
+
   const {
     isMobile,
+    isLowPower,
+    quality,
     prefersReducedMotion,
   } = useDeviceCapability();
 
+
   /*
-  ------------------------------------------------------------
+  ----------------------------------------------------------
   PERFORMANCE MODE
-  ------------------------------------------------------------
+  ----------------------------------------------------------
+
+  Reduced mode is used for:
+  - mobile
+  - low-power devices
+  - reduced-motion preference
   */
 
-  const reduced = isMobile || prefersReducedMotion;
+  const reduced =
+    isMobile ||
+    isLowPower ||
+    prefersReducedMotion;
+
 
   /*
+  ----------------------------------------------------------
+  DEVICE PIXEL RATIO
+  ----------------------------------------------------------
+
+  Higher DPR = more pixels rendered = more GPU work.
+
   Desktop:
-    1.25 DPR instead of 2
+    1.25
 
-  Mobile:
-    1 DPR
+  Normal mobile:
+    1
 
-  This alone can make a BIG difference.
+  Low-power mobile:
+    0.75
   */
 
-  const pixelRatio = isMobile ? 1 : 1.25;
+  const pixelRatio =
+    quality === "low"
+      ? 0.75
+      : isMobile
+      ? 1
+      : 1.25;
+
 
   /*
-  Particle count
+  ----------------------------------------------------------
+  FLOATING OBJECTS
+  ----------------------------------------------------------
+
+  Desktop only.
+
+  FloatingObjects component also has its own
+  quality logic, but completely avoiding mounting
+  it on mobile saves additional work.
   */
 
-  const particleCount = isMobile
-    ? 12
-    : prefersReducedMotion
-      ? 0
-      : 35;
+  const showFloatingObjects =
+    quality === "high" &&
+    !isMobile &&
+    !prefersReducedMotion;
+
+
+  /*
+  ----------------------------------------------------------
+  LIGHTING
+  ----------------------------------------------------------
+
+  Desktop gets the full lighting setup.
+
+  Mobile gets fewer expensive lights.
+  */
+
+  const useFullLighting =
+    quality === "high";
+
 
   return (
     <Canvas
+
       /*
-      --------------------------------------------------------
+      ========================================================
       GPU PERFORMANCE
-      --------------------------------------------------------
+      ========================================================
       */
 
       dpr={pixelRatio}
@@ -113,23 +216,44 @@ export default function HeroScene({
         fov: 42,
       }}
 
-      /*
-      Disable expensive antialiasing.
-      Browser/device will render much faster.
-      */
-
       gl={{
+        /*
+        Disable MSAA-style antialiasing.
+        This reduces GPU workload.
+        */
+
         antialias: false,
+
+        /*
+        Transparent canvas.
+        */
+
         alpha: true,
+
+        /*
+        Ask browser for a performance-oriented GPU context.
+        */
+
         powerPreference: "high-performance",
+
+        /*
+        We don't need stencil buffers.
+        */
+
         stencil: false,
+
+        /*
+        Depth buffer is still required for proper
+        3D object rendering.
+        */
+
         depth: true,
       }}
 
       /*
-      IMPORTANT:
-      Shadows removed because robot already has
-      lighting + glow to create depth.
+      Shadows are disabled globally.
+
+      This is important for mobile performance.
       */
 
       shadows={false}
@@ -141,7 +265,10 @@ export default function HeroScene({
       }}
 
       /*
-      Don't render unnecessary frames while hidden.
+      The scene contains continuously animated
+      content such as the character.
+
+      Therefore we keep the render loop active.
       */
 
       frameloop="always"
@@ -154,84 +281,109 @@ export default function HeroScene({
       <CinematicCamera
         pointer={pointer}
         reduced={reduced}
+        isMobile={isMobile}
       />
 
 
       {/* ==================================================
-          LIGHTING
+          BASE LIGHT
       ================================================== */}
 
-      {/* Base ambient light */}
-
       <ambientLight
-        intensity={0.45}
+        intensity={
+          quality === "low"
+            ? 0.6
+            : 0.45
+        }
         color="#181022"
       />
 
 
-      {/* Main light */}
+      {/* ==================================================
+          MAIN LIGHT
+      ================================================== */}
 
       <directionalLight
         position={[3, 4, 4]}
-        intensity={1.15}
+        intensity={
+          quality === "low"
+            ? 0.8
+            : 1.15
+        }
         color="#eee7ff"
       />
 
 
-      {/* Violet light */}
+      {/* ==================================================
+          DESKTOP ACCENT LIGHTS
+          ================================================== */}
 
-      <pointLight
-        position={[-2.5, 1.5, 2]}
-        intensity={6}
-        color="#8b5cf6"
-        distance={7}
-        decay={2}
-      />
+      {useFullLighting && (
+        <>
+          {/* Violet light */}
 
+          <pointLight
+            position={[-2.5, 1.5, 2]}
+            intensity={6}
+            color="#8b5cf6"
+            distance={7}
+            decay={2}
+          />
 
-      {/* Pink rim light */}
+          {/* Pink rim light */}
 
-      <pointLight
-        position={[2.5, 2, -2]}
-        intensity={5}
-        color="#ec4899"
-        distance={7}
-        decay={2}
-      />
+          <pointLight
+            position={[2.5, 2, -2]}
+            intensity={5}
+            color="#ec4899"
+            distance={7}
+            decay={2}
+          />
+        </>
+      )}
 
 
       {/* ==================================================
           3D CONTENT
-      ================================================== */}
+          ================================================== */}
 
       <Suspense fallback={null}>
 
-        {/* Robot */}
+        {/* --------------------------------------------------
+            ROBOT
+            -------------------------------------------------- */}
 
         <Character
           pointer={pointer}
           speaking={speaking}
           voiceLevel={voiceLevel}
-          reducedMotion={prefersReducedMotion}
+          reducedMotion={reduced}
         />
 
 
-        {/* Floating objects */}
+        {/* --------------------------------------------------
+            FLOATING OBJECTS
+            -------------------------------------------------- */}
 
-        {!isMobile && (
+        {showFloatingObjects && (
           <FloatingObjects
             reduced={reduced}
-            speaking={speaking}
           />
         )}
 
 
-        {/* Lightweight particles */}
+        {/* --------------------------------------------------
+            PARTICLES
+            --------------------------------------------------
 
-        {particleCount > 0 && (
-          <Particles
-            count={particleCount}
-          />
+            Particles.jsx now decides its own particle
+            count based on device quality.
+
+            So we don't hardcode mobile count here.
+            -------------------------------------------------- */}
+
+        {!prefersReducedMotion && (
+          <Particles />
         )}
 
       </Suspense>
@@ -239,4 +391,3 @@ export default function HeroScene({
     </Canvas>
   );
 }
-

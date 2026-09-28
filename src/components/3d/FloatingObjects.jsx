@@ -1,20 +1,31 @@
+
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
+import { useDeviceCapability } from "../../hooks/useDeviceCapability";
 
 /*
 ============================================================
- PERFORMANCE-OPTIMIZED FLOATING OBJECT
+ PERFORMANCE-OPTIMIZED FLOATING OBJECTS
 ============================================================
 
- Same visual idea:
- - Pink orb
- - Violet orb
- - Small lavender orb
+ Desktop:
+   3 floating objects
 
- Optimized:
- - Only position + one rotation update
- - Lower geometry complexity
- - Reuses animation calculations
+ Normal Mobile:
+   2 floating objects
+
+ Low-power Mobile / Reduced Motion:
+   1 floating object
+
+ The objects use simple Icosahedron geometry and only
+ update position + rotation inside useFrame.
+============================================================
+*/
+
+
+/*
+============================================================
+ FLOATING ORB
 ============================================================
 */
 
@@ -24,38 +35,66 @@ function FloatingOrb({
   color,
   speed,
   emissiveIntensity,
+  disableAnimation = false,
 }) {
   const mesh = useRef(null);
 
   /*
-  Random starting point so every orb doesn't
-  move at exactly the same time.
+  Random starting point.
+
+  This prevents every orb from moving in exactly
+  the same animation cycle.
   */
-  const offset = useRef(Math.random() * Math.PI * 2);
+
+  const offset = useRef(
+    Math.random() * Math.PI * 2
+  );
+
+
+  /*
+  ----------------------------------------------------------
+  ANIMATION
+  ----------------------------------------------------------
+  */
 
   useFrame((state) => {
     if (!mesh.current) return;
+
+    /*
+    If reduced motion is enabled, don't run
+    continuous animation.
+    */
+
+    if (disableAnimation) return;
 
     const time =
       state.clock.elapsedTime * speed +
       offset.current;
 
+
     /*
-    Gentle floating movement.
+    Gentle vertical floating.
     */
 
     mesh.current.position.y =
       position[1] +
       Math.sin(time) * 0.18;
 
+
     /*
-    Only ONE rotation is needed.
-    Two independent rotations were unnecessary.
+    Very slow single-axis rotation.
     */
 
     mesh.current.rotation.y =
       time * 0.12;
   });
+
+
+  /*
+  ----------------------------------------------------------
+  RENDER
+  ----------------------------------------------------------
+  */
 
   return (
     <mesh
@@ -63,25 +102,31 @@ function FloatingOrb({
       position={position}
       frustumCulled
     >
-      {/*
-        Detail = 0
 
-        This is already very lightweight.
-        Keeping icosahedron gives the premium
-        geometric look without expensive geometry.
+      {/*
+        Icosahedron with detail 0.
+
+        This keeps the geometric/premium look while
+        using very little geometry.
       */}
 
       <icosahedronGeometry
         args={[size, 0]}
       />
 
+
       <meshStandardMaterial
         color={color}
         emissive={color}
-        emissiveIntensity={emissiveIntensity}
+        emissiveIntensity={
+          disableAnimation
+            ? emissiveIntensity * 0.7
+            : emissiveIntensity
+        }
         roughness={0.35}
         metalness={0.25}
       />
+
     </mesh>
   );
 }
@@ -99,36 +144,82 @@ export default function FloatingObjects({
 
   /*
   ----------------------------------------------------------
-  Base objects
+  DEVICE CAPABILITY
+  ----------------------------------------------------------
+  */
+
+  const {
+    quality,
+    prefersReducedMotion,
+  } = useDeviceCapability();
+
+
+  /*
+  ----------------------------------------------------------
+  DETERMINE PERFORMANCE MODE
+  ----------------------------------------------------------
+  */
+
+  const isLowPower =
+    quality === "low";
+
+  const isMedium =
+    quality === "medium";
+
+
+  /*
+  ----------------------------------------------------------
+  BASE OBJECT
   ----------------------------------------------------------
   */
 
   const objects = [
     {
       position: [-2.1, 1.1, -0.6],
-      size: 0.14,
+      size: isLowPower ? 0.12 : 0.14,
       color: "#f472b6",
       speed: 0.5,
       emissiveIntensity: 0.55,
-    },
-
-    {
-      position: [2.3, 1.6, -1.1],
-      size: 0.1,
-      color: "#8b5cf6",
-      speed: 0.4,
-      emissiveIntensity: 0.7,
     },
   ];
 
 
   /*
   ----------------------------------------------------------
-  Third object only on desktop / normal motion
+  SECOND OBJECT
   ----------------------------------------------------------
+
+  Normal desktop + normal mobile gets this.
+
+  Very low-power devices don't need it.
   */
 
-  if (!reduced) {
+  if (!isLowPower) {
+    objects.push({
+      position: [2.3, 1.6, -1.1],
+      size: isMedium ? 0.09 : 0.1,
+      color: "#8b5cf6",
+      speed: 0.4,
+      emissiveIntensity: 0.7,
+    });
+  }
+
+
+  /*
+  ----------------------------------------------------------
+  THIRD OBJECT
+  ----------------------------------------------------------
+
+  Desktop only.
+
+  This saves GPU work on mobile.
+  */
+
+  if (
+    quality === "high" &&
+    !reduced &&
+    !prefersReducedMotion
+  ) {
     objects.push({
       position: [1.8, -0.4, 0.4],
       size: 0.08,
@@ -141,7 +232,19 @@ export default function FloatingObjects({
 
   /*
   ----------------------------------------------------------
-  Render
+  FINAL ANIMATION MODE
+  ----------------------------------------------------------
+  */
+
+  const disableAnimation =
+    prefersReducedMotion ||
+    isLowPower ||
+    reduced;
+
+
+  /*
+  ----------------------------------------------------------
+  RENDER
   ----------------------------------------------------------
   */
 
@@ -149,10 +252,12 @@ export default function FloatingObjects({
     <group>
       {objects.map((object, index) => (
         <FloatingOrb
-          key={index}
+          key={`${object.color}-${index}`}
           {...object}
+          disableAnimation={disableAnimation}
         />
       ))}
     </group>
   );
 }
+
