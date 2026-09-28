@@ -1,0 +1,368 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #5b21b6 transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #060308;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #8b5cf6;
+  color: #060308;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #3a2a5c;
+  border-radius: 4px;
+}
+
+/* Visible keyboard focus */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #c4b5fd;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Subtle grain to keep the dark background from looking flat / gradient-banded */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes eq-bar {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.eq-bar {
+  animation: eq-bar 0.9s ease-in-out infinite;
+  transform-origin: bottom;
+}
+
+.section-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: #a79fc0;
+}
+@keyframes hakkim-photo-float {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes hakkim-scan {
+  0% {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.8;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateY(120%);
+    opacity: 0;
+  }
+}
+
+@keyframes hakkim-glow {
+  0% {
+    opacity: 0.35;
+    transform: scale(0.95);
+  }
+
+  50% {
+    opacity: 0.65;
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 0.35;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes hakkim-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(35px) scale(1.08);
+    filter: blur(14px);
+  }
+
+  60% {
+    opacity: 0.8;
+    filter: blur(3px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes hakkim-frame {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.85);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+@keyframes hakkim-speaking-pulse {
+  from {
+    filter:
+      drop-shadow(
+        0 0 12px rgba(139, 92, 246, 0.15)
+      );
+  }
+
+  to {
+    filter:
+      drop-shadow(
+        0 0 30px rgba(139, 92, 246, 0.45)
+      );
+  }
+}
+
+.hakkim-photo {
+  animation:
+    hakkim-reveal 1.5s cubic-bezier(0.16, 1, 0.3, 1)
+    forwards,
+    hakkim-photo-float 4s ease-in-out 1.6s infinite;
+
+  transform-origin: center bottom;
+
+  will-change:
+    transform,
+    opacity,
+    filter;
+}
+
+.hakkim-photo-glow {
+  animation:
+    hakkim-glow 3.5s ease-in-out infinite;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.hakkim-scan {
+  animation:
+    hakkim-scan 4s linear infinite;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.hakkim-frame {
+  animation:
+    hakkim-frame 1s cubic-bezier(0.16, 1, 0.3, 1)
+    0.7s forwards;
+
+  opacity: 0;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.hakkim-speaking {
+  animation:
+    hakkim-speaking-pulse 0.35s ease-in-out infinite
+    alternate;
+}
+
+@media (max-width: 768px) {
+  .hakkim-photo {
+    animation:
+      hakkim-reveal 1.3s cubic-bezier(0.16, 1, 0.3, 1)
+      forwards,
+      hakkim-photo-float 5s ease-in-out 1.4s infinite;
+  }
+
+  .hakkim-frame {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hakkim-photo,
+  .hakkim-photo-glow,
+  .hakkim-scan,
+  .hakkim-frame,
+  .hakkim-speaking {
+    animation: none;
+  }
+}
+/* ============================================================
+   GLOBAL PORTFOLIO MOTION
+   ============================================================ */
+
+@keyframes global-orb-one {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(80px, -40px, 0) scale(1.12);
+  }
+}
+
+@keyframes global-orb-two {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(-70px, 55px, 0) scale(1.08);
+  }
+}
+
+@keyframes global-orb-three {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(45px, -35px, 0);
+  }
+}
+
+.animate-global-orb-one {
+  animation: global-orb-one 14s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-global-orb-two {
+  animation: global-orb-two 17s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-global-orb-three {
+  animation: global-orb-three 20s ease-in-out infinite;
+  will-change: transform;
+}
+
+
+/* ============================================================
+   SECTION SYSTEM
+   ============================================================ */
+
+/*
+  Every major section gets a controlled vertical rhythm.
+
+  Before:
+  py-28 / md:py-40
+
+  That was creating a lot of empty space.
+
+  Now the global section spacing is smaller.
+*/
+
+main > section {
+  position: relative;
+  isolation: isolate;
+}
+
+
+/* ============================================================
+   SECTION BACKGROUND MOTION
+   ============================================================ */
+
+[data-section-bg] {
+  will-change: transform;
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-global-orb-one,
+  .animate-global-orb-two,
+  .animate-global-orb-three {
+    animation: none;
+  }
+}
