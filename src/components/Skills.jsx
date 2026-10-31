@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+﻿import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -20,7 +20,7 @@ const skillGroups = [
     number: "01",
     category: "Programming Language",
     icon: Code2,
-    accent: "violet",
+    accent: "orange",
     skills: ["Python", "JavaScript"],
   },
   {
@@ -67,7 +67,7 @@ const skillGroups = [
     number: "06",
     category: "AI / ML",
     icon: BrainCircuit,
-    accent: "purple",
+    accent: "orange",
     skills: [
       "ML fundamentals",
       "Generative AI",
@@ -108,45 +108,35 @@ const skillGroups = [
 ];
 
 const accentStyles = {
-  violet: {
-    glow: "rgba(139,92,246,0.35)",
-    border: "rgba(139,92,246,0.25)",
-    text: "#c4b5fd",
+  orange: {
+    glow: "rgba(116,27,56,0.22)",
+    border: "rgba(196,123,147,0.3)",
+    text: "#ddb2c0",
   },
   cyan: {
-    glow: "rgba(34,211,238,0.3)",
-    border: "rgba(34,211,238,0.22)",
-    text: "#67e8f9",
+    glow: "rgba(195,199,206,0.16)",
+    border: "rgba(195,199,206,0.24)",
+    text: "#d8dbe0",
   },
   emerald: {
-    glow: "rgba(52,211,153,0.28)",
-    border: "rgba(52,211,153,0.2)",
-    text: "#6ee7b7",
+    glow: "rgba(195,199,206,0.12)",
+    border: "rgba(195,199,206,0.2)",
+    text: "#c3c7ce",
   },
   pink: {
-    glow: "rgba(244,114,182,0.3)",
-    border: "rgba(244,114,182,0.22)",
-    text: "#f9a8d4",
+    glow: "rgba(116,27,56,0.2)",
+    border: "rgba(196,123,147,0.25)",
+    text: "#c47b93",
   },
   amber: {
-    glow: "rgba(251,191,36,0.28)",
-    border: "rgba(251,191,36,0.2)",
-    text: "#fcd34d",
-  },
-  purple: {
-    glow: "rgba(168,85,247,0.35)",
-    border: "rgba(168,85,247,0.25)",
-    text: "#d8b4fe",
-  },
-  orange: {
-    glow: "rgba(251,146,60,0.3)",
-    border: "rgba(251,146,60,0.22)",
-    text: "#fdba74",
+    glow: "rgba(195,199,206,0.12)",
+    border: "rgba(195,199,206,0.2)",
+    text: "#c3c7ce",
   },
   blue: {
-    glow: "rgba(96,165,250,0.3)",
-    border: "rgba(96,165,250,0.22)",
-    text: "#93c5fd",
+    glow: "rgba(195,199,206,0.16)",
+    border: "rgba(195,199,206,0.24)",
+    text: "#d8dbe0",
   },
 };
 
@@ -216,7 +206,7 @@ function SkillRobot({ accent }) {
           style={{
             borderColor: accent.border,
             background:
-              "linear-gradient(145deg,#252033,#09070f)",
+              "linear-gradient(145deg,#211419,#0b090b)",
           }}
         >
           {/* Eyes */}
@@ -244,7 +234,7 @@ function SkillRobot({ accent }) {
           style={{
             borderColor: accent.border,
             background:
-              "linear-gradient(145deg,#181421,#07060b)",
+              "linear-gradient(145deg,#171316,#0b0b0c)",
           }}
         />
 
@@ -423,7 +413,7 @@ export default function Skills() {
         "
         style={{
           background:
-            "radial-gradient(circle,#8b5cf6,transparent 70%)",
+            "radial-gradient(circle,#741b38,transparent 70%)",
         }}
       />
 
@@ -436,7 +426,7 @@ export default function Skills() {
         className="relative z-10"
       >
         <p className="section-label">
-          02 — Skills
+          02  /  Skills
         </p>
 
         <div className="mt-5 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -490,7 +480,7 @@ export default function Skills() {
           >
             <Sparkles
               size={13}
-              className="text-violet-300"
+              className="text-maroon-300"
             />
 
             Stack / Online
@@ -529,6 +519,7 @@ export default function Skills() {
                 relative
                 overflow-hidden
                 rounded-[1.5rem]
+                theme-card
                 border
                 border-white/[0.08]
                 bg-white/[0.025]
@@ -658,6 +649,7 @@ export default function Skills() {
                     key={skill}
                     className="
                       rounded-lg
+                      theme-chip
                       border
                       border-white/[0.08]
                       bg-white/[0.025]
@@ -722,11 +714,11 @@ export default function Skills() {
             w-1.5
             animate-pulse
             rounded-full
-            bg-violet-400
+            bg-maroon-400
           "
         />
 
-        Always learning · Always building
+        Always learning  |  Always building
       </div>
     </section>
   );

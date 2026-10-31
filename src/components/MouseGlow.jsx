@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+﻿import { useEffect, useRef } from "react";
 
 export default function MouseGlow() {
   const glowRef = useRef(null);
@@ -40,9 +40,10 @@ export default function MouseGlow() {
       className="pointer-events-none fixed left-0 top-0 z-0 h-[480px] w-[480px] rounded-full opacity-0 mix-blend-screen transition-opacity duration-300"
       style={{
         background:
-          "radial-gradient(circle, rgba(139,92,246,0.14) 0%, rgba(139,92,246,0.06) 35%, transparent 72%)",
+          "radial-gradient(circle, rgba(116, 27, 56,0.14) 0%, rgba(116, 27, 56,0.06) 35%, transparent 72%)",
         willChange: "transform, opacity",
       }}
     />
   );
 }
+

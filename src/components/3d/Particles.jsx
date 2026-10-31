@@ -1,4 +1,4 @@
-
+﻿
 import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -11,9 +11,9 @@ import { useDeviceCapability } from "../../hooks/useDeviceCapability";
 
  Visual quality:
 
- HIGH   → Desktop → 35 particles
- MEDIUM → Mobile  → 18 particles
- LOW    → Weak/mobile → 8 particles
+ HIGH   â†’ Desktop â†’ 35 particles
+ MEDIUM â†’ Mobile  â†’ 18 particles
+ LOW    â†’ Weak/mobile â†’ 8 particles
 
  The goal is to keep the 3D atmosphere without making
  mobile scrolling/rendering unnecessarily heavy.
@@ -144,7 +144,7 @@ export default function Particles({ count }) {
 
       <pointsMaterial
         size={quality === "low" ? 0.022 : 0.028}
-        color="#c4b5fd"
+        color="#ff8a5b"
         transparent
         opacity={0.42}
         sizeAttenuation
@@ -154,4 +154,5 @@ export default function Particles({ count }) {
     </points>
   );
 }
+
 

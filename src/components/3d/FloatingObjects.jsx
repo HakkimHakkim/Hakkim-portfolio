@@ -1,4 +1,4 @@
-
+﻿
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useDeviceCapability } from "../../hooks/useDeviceCapability";
@@ -198,7 +198,7 @@ export default function FloatingObjects({
     objects.push({
       position: [2.3, 1.6, -1.1],
       size: isMedium ? 0.09 : 0.1,
-      color: "#8b5cf6",
+      color: "#f45112",
       speed: 0.4,
       emissiveIntensity: 0.7,
     });
@@ -223,7 +223,7 @@ export default function FloatingObjects({
     objects.push({
       position: [1.8, -0.4, 0.4],
       size: 0.08,
-      color: "#c4b5fd",
+      color: "#ff8a5b",
       speed: 0.65,
       emissiveIntensity: 0.6,
     });
@@ -260,4 +260,5 @@ export default function FloatingObjects({
     </group>
   );
 }
+
 

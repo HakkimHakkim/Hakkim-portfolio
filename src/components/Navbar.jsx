@@ -5,29 +5,6 @@ import { nav, profile } from "../data/portfolio.js";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  /*
-  ============================================================
-  SCROLL STATE
-  ============================================================
-  */
-
-  useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 24);
-    };
-
-    onScroll();
-
-    window.addEventListener("scroll", onScroll, {
-      passive: true,
-    });
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
 
   /*
   ============================================================
@@ -97,20 +74,12 @@ export default function Navbar() {
 
   return (
     <header
-      className={`
-        fixed
-        inset-x-0
-        top-0
-        z-50
-        transition-colors
-        duration-300
-
-        ${
-          scrolled
-            ? "bg-void/80 backdrop-blur-md"
-            : "bg-transparent"
-        }
-      `}
+      className="
+        site-nav
+        border-b
+        border-silver-300/[0.12]
+        bg-[#0b0b0b]
+      "
     >
       {/* ====================================================
           NAVBAR CONTAINER
@@ -202,7 +171,7 @@ export default function Navbar() {
                   left-0
                   h-px
                   w-0
-                  bg-violet-300
+                  bg-maroon-300
                   transition-all
                   duration-300
                   group-hover:w-full
@@ -211,6 +180,10 @@ export default function Navbar() {
             </a>
           ))}
         </nav>
+
+        <a href="#contact" onClick={(event) => handleNavClick(event, "#contact")} className="hidden rounded-sm bg-maroon-500 px-4 py-2.5 text-[11px] font-semibold text-white transition-colors hover:bg-maroon-400 md:inline-flex">
+          Let’s talk
+        </a>
 
         {/* ==================================================
             MOBILE MENU BUTTON
@@ -237,7 +210,7 @@ export default function Navbar() {
             hover:bg-white/[0.05]
             focus:outline-none
             focus:ring-2
-            focus:ring-violet-300/40
+            focus:ring-maroon-300/40
             md:hidden
           "
           onClick={() =>
@@ -318,9 +291,9 @@ export default function Navbar() {
                   transition-all
                   duration-200
                   hover:pl-2
-                  hover:text-violet-200
+                  hover:text-maroon-200
                   focus:outline-none
-                  focus:text-violet-200
+                  focus:text-maroon-200
                 "
               >
                 <span className="mr-3 text-xs font-mono text-white/20">
@@ -336,3 +309,4 @@ export default function Navbar() {
     </header>
   );
 }
+

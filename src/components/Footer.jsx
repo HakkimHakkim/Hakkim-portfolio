@@ -1,4 +1,4 @@
-import { Github, Linkedin } from "lucide-react";
+﻿import { Github, Linkedin } from "lucide-react";
 import { profile } from "../data/portfolio.js";
 
 export default function Footer() {
@@ -12,7 +12,7 @@ export default function Footer() {
             {profile.name.toUpperCase()}
           </p>
           <p className="mt-1 text-sm text-ink-600">
-            Full Stack Developer × AI
+            Full Stack Developer  |  AI
           </p>
         </div>
 
@@ -22,7 +22,7 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
-            className="text-ink-400 transition-colors hover:text-violet-300"
+            className="text-ink-400 transition-colors hover:text-maroon-300"
           >
             <Github size={18} />
           </a>
@@ -31,16 +31,17 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
-            className="text-ink-400 transition-colors hover:text-violet-300"
+            className="text-ink-400 transition-colors hover:text-maroon-300"
           >
             <Linkedin size={18} />
           </a>
         </div>
 
         <p className="text-sm text-ink-600">
-          © {year} {profile.name}
+          Copyright (c) {year} {profile.name}
         </p>
       </div>
     </footer>
   );
 }
+

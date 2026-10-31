@@ -1,4 +1,4 @@
-
+﻿
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -62,7 +62,7 @@ export default function Experience() {
       id="certifications"
       className="relative mx-auto max-w-7xl px-6 py-28 md:px-10 md:py-40"
     >
-      <p className="section-label">04 — Certifications</p>
+      <p className="section-label">04  /  Certifications</p>
 
       <h2
         ref={headingRef}
@@ -83,7 +83,7 @@ export default function Experience() {
         {experience.map((item) => (
           <article
             key={item.title}
-            className="group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] transition-all duration-500 hover:-translate-y-2 hover:border-violet-300/30 hover:bg-white/[0.045]"
+            className="theme-card group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] transition-all duration-500 hover:-translate-y-2 hover:border-maroon-300/30 hover:bg-white/[0.045]"
           >
             {/* Certificate preview */}
             <div className="relative aspect-[1.414/1] overflow-hidden bg-black/30">
@@ -103,7 +103,7 @@ export default function Experience() {
                   href={item.image}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex translate-y-3 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
+                  className="inline-flex translate-y-3 items-center gap-2 rounded-full bg-maroon-500 px-5 py-3 text-sm font-semibold text-silver-100 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
                 >
                   <Eye size={17} />
                   View Certificate
@@ -113,7 +113,7 @@ export default function Experience() {
 
             {/* Certificate information */}
             <div className="p-6">
-              <span className="font-mono text-xs uppercase tracking-[0.18em] text-violet-300">
+              <span className="font-mono text-xs uppercase tracking-[0.18em] text-maroon-300">
                 {item.type}
               </span>
 
@@ -135,7 +135,7 @@ export default function Experience() {
                 href={item.image}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-ink-300 transition-colors duration-300 hover:text-violet-300"
+                className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-ink-300 transition-colors duration-300 hover:text-maroon-300"
               >
                 <Eye size={15} />
                 View
@@ -147,4 +147,5 @@ export default function Experience() {
     </section>
   );
 }
+
 

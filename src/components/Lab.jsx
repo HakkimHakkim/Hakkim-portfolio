@@ -1,4 +1,4 @@
-import { Suspense, useRef } from "react";
+﻿import { Suspense, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useMouseParallax } from "../hooks/useMouseParallax.js";
 import { useDeviceCapability } from "../hooks/useDeviceCapability.js";
@@ -18,11 +18,11 @@ function WireframeCore({ pointer }) {
     <group ref={mesh}>
       <mesh>
         <icosahedronGeometry args={[1.5, 1]} />
-        <meshBasicMaterial color="#8b5cf6" wireframe transparent opacity={0.5} />
+        <meshBasicMaterial color="#741b38" wireframe transparent opacity={0.5} />
       </mesh>
       <mesh scale={0.6}>
         <icosahedronGeometry args={[1.5, 0]} />
-        <meshBasicMaterial color="#f472b6" wireframe transparent opacity={0.35} />
+        <meshBasicMaterial color="#a8adb5" wireframe transparent opacity={0.35} />
       </mesh>
     </group>
   );
@@ -39,7 +39,7 @@ function LabScene() {
       style={{ pointerEvents: "none" }}
     >
       <ambientLight intensity={0.4} />
-      <pointLight position={[3, 2, 3]} intensity={8} color="#8b5cf6" />
+      <pointLight position={[3, 2, 3]} intensity={8} color="#741b38" />
       <Suspense fallback={null}>
         <WireframeCore pointer={pointer} />
       </Suspense>
@@ -71,14 +71,15 @@ export default function Lab() {
           Where I like to build
         </p>
         <h2 className="mt-6 text-balance font-display text-4xl font-semibold leading-[1.1] tracking-tightest text-ink-100 sm:text-5xl md:text-6xl">
-          AI, full stack engineering, and the 3D web — explored together.
+          AI, full stack engineering, and the 3D web  /  explored together.
         </h2>
         <p className="mx-auto mt-6 max-w-xl text-balance text-ink-400">
           I'm drawn to the space where intelligent backends, thoughtful
-          interfaces, and real-time 3D meet — and I use my projects to keep
+          interfaces, and real-time 3D meet  /  and I use my projects to keep
           exploring it.
         </p>
       </div>
     </section>
   );
 }
+

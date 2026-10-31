@@ -5,23 +5,32 @@ export default {
     extend: {
       colors: {
         void: {
-          DEFAULT: "#060308",
-          surface: "#0c0714",
-          raised: "#120c1e",
+          DEFAULT: "#080808",
+          surface: "#101010",
+          raised: "#171717",
         },
-        violet: {
-          150: "#e7ddff",
-          300: "#c4b5fd",
-          500: "#8b5cf6",
-          700: "#5b21b6",
+        maroon: {
+          100: "#f0dce3",
+          200: "#ddb2c0",
+          300: "#c47b93",
+          400: "#a44864",
+          500: "#741b38",
+          600: "#5d152d",
+          700: "#461022",
         },
-        bloom: {
-          pink: "#f472b6",
+        silver: {
+          50: "#f5f6f7",
+          100: "#eceef1",
+          200: "#d8dbe0",
+          300: "#c3c7ce",
+          400: "#a8adb5",
+          500: "#89909a",
+          600: "#6c737e",
         },
         ink: {
-          100: "#f5f3ff",
-          400: "#a79fc0",
-          600: "#6c6483",
+          100: "#eceef1",
+          400: "#b8bbc1",
+          600: "#858a93",
         },
       },
       fontFamily: {

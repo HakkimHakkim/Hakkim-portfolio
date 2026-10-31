@@ -1,8 +1,8 @@
-// ─────────────────────────────────────────────────────────────
+﻿// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // EDIT ME: this file holds every piece of personal content on the
-// site. Update the values below — you shouldn't need to touch any
+// site. Update the values below  /  you shouldn't need to touch any
 // component to change text, links or projects.
-// ─────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export const profile = {
   name: "Hakkim",
@@ -42,7 +42,7 @@ export const voiceIntro = {
 
 export const about = {
   kicker: "Building digital experiences.",
-  body: "I'm Hakkim, an aspiring Full Stack Developer focused on building modern web applications and exploring AI-powered technologies. I care about interfaces that feel considered — fast, legible, and built on code that holds up.",
+  body: "I'm Hakkim, a Full Stack Developer focused on modern web applications and practical AI. I care about clear, responsive interfaces and maintainable code.",
   details: [
     { label: "Based in", value: profile.location },
     { label: "Studying", value: profile.education },
@@ -88,7 +88,7 @@ export const projects = [
     id: "flutter-project",
     title: "Flutter Project",
     description:
-      "A modern Flutter application, currently in active development. Details to follow as the project matures.",
+      "A Flutter application currently in development, built with Dart and focused on a useful, straightforward mobile experience.",
     stack: ["Flutter", "Dart"],
     github: "https://github.com/HakkimHakkim",
     demo: null,
@@ -150,35 +150,34 @@ export const experience = [
     image: "/certificates/certificate.jpg",
   },
   {
-    type: "Certificate of cloud infrastructure",
-    title: "ORACLE cloud infrastructure",
+    type: "Cloud Infrastructure Certificate",
+    title: "Oracle Cloud Infrastructure",
     org: "ORACLE",
     meta: "2025",
     image: "/certificates/oracle.jpg",
   },
   {
-    type: "Govty of Tamilnadu Skill Development Corporation",
-    title: "Naan Mudhalvan scheme",
+    type: "Skill Development Certificate",
+    title: "Naan Mudhalvan Scheme",
     org: "EBPL",
     meta: "2025",
     image: "/certificates/ebpl.jpg",
   },
   {
-    
-    type: "Govty of Tamilnadu Skill Development Corporation",
-    title: "Naan Mudhalvan scheme",
-    org: "Data Analytics",
+    type: "Skill Development Certificate",
+    title: "Data Analytics",
+    org: "Tamil Nadu Skill Development Corporation",
     meta: "2025",
     image: "/certificates/dataanalysis.jpg",
   },
   {
-    
-    type: "Govty of Tamilnadu Skill Development Corporation",
-    title: "Naan Mudhalvan scheme",
-    org: "Cyber Security",
+    type: "Skill Development Certificate",
+    title: "Cybersecurity",
+    org: "Tamil Nadu Skill Development Corporation",
     meta: "2025",
     image: "/certificates/cybersecurity.jpg",
   },
   
 ];
+
 

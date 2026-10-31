@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+﻿import { useEffect, useRef } from "react";
 
 /**
  * Tracks normalized pointer position (-1 to 1 on each axis) in a ref,
@@ -30,3 +30,4 @@ export function useMouseParallax() {
 
   return pointer;
 }
+

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+﻿import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -78,7 +78,7 @@ function ProjectVisual({ type }) {
           h-full
           min-h-[340px]
           overflow-hidden
-          bg-[#0b0912]
+          bg-[#120f12]
           md:min-h-[500px]
         "
       >
@@ -92,7 +92,7 @@ function ProjectVisual({ type }) {
             h-[320px]
             w-[320px]
             rounded-full
-            bg-violet-500/[0.16]
+            bg-maroon-500/[0.16]
             blur-[110px]
           "
         />
@@ -105,7 +105,7 @@ function ProjectVisual({ type }) {
             h-[300px]
             w-[300px]
             rounded-full
-            bg-fuchsia-500/[0.10]
+            bg-silver-500/[0.10]
             blur-[100px]
           "
         />
@@ -152,7 +152,7 @@ function ProjectVisual({ type }) {
             text-white/35
           "
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-violet-300" />
+          <span className="h-1.5 w-1.5 rounded-full bg-maroon-300" />
           Career Intelligence System
         </div>
 
@@ -186,9 +186,9 @@ function ProjectVisual({ type }) {
                 justify-center
                 rounded-2xl
                 border
-                border-violet-300/10
-                bg-violet-400/[0.08]
-                text-violet-200
+                border-maroon-300/10
+                bg-maroon-400/[0.08]
+                text-maroon-200
               "
             >
               <BrainCircuit size={22} />
@@ -270,13 +270,13 @@ function ProjectVisual({ type }) {
                   justify-center
                   rounded-full
                   border
-                  border-violet-300/20
-                  bg-violet-400/[0.08]
+                  border-maroon-300/20
+                  bg-maroon-400/[0.08]
                 "
               >
                 <Target
                   size={18}
-                  className="text-violet-200"
+                  className="text-maroon-200"
                 />
               </div>
             </div>
@@ -289,7 +289,7 @@ function ProjectVisual({ type }) {
                   MATCH CONFIDENCE
                 </span>
 
-                <span className="font-mono text-[10px] text-violet-200">
+                <span className="font-mono text-[10px] text-maroon-200">
                   92%
                 </span>
               </div>
@@ -301,8 +301,8 @@ function ProjectVisual({ type }) {
                     w-[92%]
                     rounded-full
                     bg-gradient-to-r
-                    from-violet-500
-                    to-fuchsia-300
+                    from-maroon-500
+                    to-silver-300
                   "
                 />
               </div>
@@ -354,9 +354,9 @@ function ProjectVisual({ type }) {
             justify-center
             rounded-full
             border
-            border-violet-300/20
-            bg-violet-400/[0.08]
-            shadow-[0_0_60px_rgba(139,92,246,0.22)]
+            border-maroon-300/20
+            bg-maroon-400/[0.08]
+            shadow-[0_0_60px_rgba(116, 27, 56,0.22)]
             backdrop-blur-xl
             md:h-20
             md:w-20
@@ -370,14 +370,14 @@ function ProjectVisual({ type }) {
               items-center
               justify-center
               rounded-full
-              bg-violet-400/[0.10]
+              bg-maroon-400/[0.10]
               md:h-12
               md:w-12
             "
           >
             <Bot
               size={23}
-              className="text-violet-200"
+              className="text-maroon-200"
             />
           </div>
         </div>
@@ -420,7 +420,7 @@ function ProjectVisual({ type }) {
         h-full
         min-h-[340px]
         overflow-hidden
-        bg-[#080d12]
+        bg-[#111216]
         md:min-h-[500px]
       "
     >
@@ -434,7 +434,7 @@ function ProjectVisual({ type }) {
           h-[340px]
           w-[340px]
           rounded-full
-          bg-cyan-400/[0.11]
+          bg-silver-400/[0.11]
           blur-[110px]
         "
       />
@@ -447,7 +447,7 @@ function ProjectVisual({ type }) {
           h-[300px]
           w-[300px]
           rounded-full
-          bg-violet-500/[0.10]
+          bg-maroon-500/[0.10]
           blur-[100px]
         "
       />
@@ -494,7 +494,7 @@ function ProjectVisual({ type }) {
           text-white/30
         "
       >
-        <span className="h-1.5 w-1.5 rounded-full bg-cyan-300" />
+        <span className="h-1.5 w-1.5 rounded-full bg-silver-300" />
         Multi Model Intelligence
       </div>
 
@@ -537,13 +537,13 @@ function ProjectVisual({ type }) {
               justify-center
               rounded-xl
               border
-              border-cyan-300/10
-              bg-cyan-300/[0.06]
+              border-silver-300/10
+              bg-silver-300/[0.06]
             "
           >
             <Bot
               size={20}
-              className="text-cyan-200"
+              className="text-silver-200"
             />
           </div>
 
@@ -611,13 +611,13 @@ function ProjectVisual({ type }) {
               rounded-2xl
               rounded-tr-sm
               border
-              border-cyan-300/10
-              bg-cyan-300/[0.045]
+              border-silver-300/10
+              bg-silver-300/[0.045]
               px-4
               py-3
             "
           >
-            <p className="text-[10px] leading-relaxed text-cyan-50/65">
+            <p className="text-[10px] leading-relaxed text-silver-50/65">
               I can help you create a structured learning roadmap...
             </p>
           </div>
@@ -641,7 +641,7 @@ function ProjectVisual({ type }) {
 
           <div className="flex flex-wrap gap-2">
             {[
-              ["GPT-OSS", "violet"],
+              ["GPT-OSS", "orange"],
               ["QWEN", "cyan"],
               ["GEMINI", "white"],
             ].map(([model, color]) => (
@@ -655,10 +655,10 @@ function ProjectVisual({ type }) {
                   font-mono
                   text-[8px]
                   ${
-                    color === "violet"
-                      ? "border-violet-300/15 bg-violet-300/[0.06] text-violet-200/75"
+                    color === "orange"
+                      ? "border-maroon-300/15 bg-maroon-300/[0.06] text-maroon-200/75"
                       : color === "cyan"
-                      ? "border-cyan-300/15 bg-cyan-300/[0.06] text-cyan-200/75"
+                      ? "border-silver-300/15 bg-silver-300/[0.06] text-silver-200/75"
                       : "border-white/[0.08] bg-white/[0.025] text-white/40"
                   }
                 `}
@@ -684,8 +684,8 @@ function ProjectVisual({ type }) {
           justify-center
           rounded-full
           border
-          border-cyan-300/15
-          bg-cyan-300/[0.06]
+          border-silver-300/15
+          bg-silver-300/[0.06]
           shadow-[0_0_60px_rgba(34,211,238,0.14)]
           backdrop-blur-xl
           md:h-20
@@ -694,7 +694,7 @@ function ProjectVisual({ type }) {
       >
         <Network
           size={23}
-          className="text-cyan-200"
+          className="text-silver-200"
         />
       </div>
 
@@ -738,14 +738,15 @@ function ProjectCard({ project }) {
         relative
         overflow-hidden
         rounded-[2.2rem]
+        theme-card
         border
         border-white/[0.09]
-        bg-[#0b0b12]/90
+        bg-[#121113]/90
         shadow-[0_30px_100px_rgba(0,0,0,0.28)]
         transition-all
         duration-500
         hover:-translate-y-1
-        hover:border-violet-300/20
+        hover:border-maroon-300/20
         hover:shadow-[0_40px_120px_rgba(0,0,0,0.40)]
       "
     >
@@ -760,7 +761,7 @@ function ProjectCard({ project }) {
           h-px
           bg-gradient-to-r
           from-transparent
-          via-violet-300/40
+          via-maroon-300/40
           to-transparent
           opacity-60
         "
@@ -796,7 +797,7 @@ function ProjectCard({ project }) {
               backdrop-blur-md
             "
           >
-            <span className="text-violet-200/70">
+            <span className="text-maroon-200/70">
               {project.number}
             </span>
 
@@ -827,8 +828,8 @@ function ProjectCard({ project }) {
                   h-1.5
                   w-1.5
                   rounded-full
-                  bg-violet-300
-                  shadow-[0_0_12px_rgba(196,181,253,0.7)]
+                  bg-maroon-300
+                  shadow-[0_0_12px_rgba(195,199,206,0.55)]
                 "
               />
 
@@ -838,7 +839,7 @@ function ProjectCard({ project }) {
                   text-[9px]
                   uppercase
                   tracking-[0.22em]
-                  text-violet-200/65
+                  text-maroon-200/65
                 "
               >
                 {project.category}
@@ -914,6 +915,7 @@ function ProjectCard({ project }) {
                     key={item}
                     className="
                       rounded-full
+                      theme-chip
                       border
                       border-white/[0.08]
                       bg-white/[0.025]
@@ -924,7 +926,7 @@ function ProjectCard({ project }) {
                       text-white/50
                       transition-all
                       duration-300
-                      group-hover:border-violet-300/15
+                      group-hover:border-maroon-300/15
                       group-hover:text-white/70
                     "
                   >
@@ -976,19 +978,19 @@ function ProjectCard({ project }) {
                 overflow-hidden
                 rounded-full
                 border
-                border-violet-300/20
-                bg-violet-400/[0.07]
+                border-maroon-300/20
+                bg-maroon-400/[0.07]
                 px-5
                 py-3
                 text-sm
                 font-medium
-                text-violet-100
-                shadow-[0_0_25px_rgba(139,92,246,0.08)]
+                text-maroon-100
+                shadow-[0_0_25px_rgba(116, 27, 56,0.08)]
                 transition-all
                 duration-300
-                hover:border-violet-200/40
-                hover:bg-violet-400/[0.14]
-                hover:shadow-[0_0_35px_rgba(139,92,246,0.20)]
+                hover:border-maroon-200/40
+                hover:bg-maroon-400/[0.14]
+                hover:shadow-[0_0_35px_rgba(116, 27, 56,0.20)]
               "
             >
               {/* Moving shine */}
@@ -1036,7 +1038,7 @@ function ProjectCard({ project }) {
                   w-3
                   animate-ping
                   rounded-full
-                  bg-violet-300/40
+                  bg-maroon-300/40
                 "
               />
             </a>
@@ -1141,7 +1143,7 @@ export default function Projects() {
       >
         <div>
           <p className="section-label">
-            03 — Work
+            03  /  Work
           </p>
 
           <h2
@@ -1159,7 +1161,7 @@ export default function Projects() {
               md:text-6xl
             "
           >
-            Things I’ve built.
+            Things I've built.
           </h2>
         </div>
 
@@ -1205,7 +1207,7 @@ export default function Projects() {
             w-[60%]
             -translate-x-1/2
             rounded-full
-            bg-violet-500/[0.06]
+            bg-maroon-500/[0.06]
             blur-[100px]
           "
         />

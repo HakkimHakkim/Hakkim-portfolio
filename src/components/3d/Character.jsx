@@ -1,4 +1,4 @@
-
+﻿
 import { useEffect, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -238,7 +238,7 @@ const darkMetal = {
   roughness: 0.32,
 };
 
-const violetMetal = {
+const orangeMetal = {
   color: "#7c3aed",
   metalness: 0.65,
   roughness: 0.28,
@@ -247,8 +247,8 @@ const violetMetal = {
 };
 
 const eyeMaterial = {
-  color: "#a78bfa",
-  emissive: "#8b5cf6",
+  color: "#ff8a5b",
+  emissive: "#f45112",
   emissiveIntensity: 4,
 };
 
@@ -467,7 +467,7 @@ export default function Character({
             />
 
             <meshStandardMaterial
-              {...violetMetal}
+              {...orangeMetal}
             />
           </mesh>
 
@@ -517,7 +517,7 @@ export default function Character({
           />
 
           <meshStandardMaterial
-            {...violetMetal}
+            {...orangeMetal}
           />
         </mesh>
 
@@ -588,7 +588,7 @@ export default function Character({
           />
 
           <meshStandardMaterial
-            {...violetMetal}
+            {...orangeMetal}
           />
         </mesh>
 
@@ -842,7 +842,7 @@ export default function Character({
           />
 
           <meshStandardMaterial
-            {...violetMetal}
+            {...orangeMetal}
           />
         </mesh>
 
@@ -851,4 +851,5 @@ export default function Character({
     </group>
   );
 }
+
 

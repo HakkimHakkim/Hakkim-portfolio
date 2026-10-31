@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+﻿import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -323,7 +323,7 @@ export default function About() {
             h-80
             w-80
             rounded-full
-            bg-violet-500/[0.08]
+            bg-maroon-500/[0.08]
             blur-[100px]
           "
         />
@@ -339,7 +339,7 @@ export default function About() {
             h-[420px]
             w-[420px]
             rounded-full
-            bg-fuchsia-500/[0.06]
+            bg-silver-500/[0.06]
             blur-[120px]
           "
         />
@@ -355,7 +355,7 @@ export default function About() {
             h-[350px]
             w-[350px]
             rounded-full
-            bg-cyan-400/[0.045]
+            bg-silver-400/[0.045]
             blur-[110px]
           "
         />
@@ -371,7 +371,7 @@ export default function About() {
             h-56
             w-56
             rounded-full
-            bg-violet-400/[0.045]
+            bg-maroon-400/[0.045]
             blur-[90px]
           "
         />
@@ -387,7 +387,7 @@ export default function About() {
             h-32
             w-32
             rounded-full
-            bg-cyan-300/[0.04]
+            bg-silver-300/[0.04]
             blur-[70px]
           "
         />
@@ -449,7 +449,7 @@ export default function About() {
 
       <div className="relative z-10">
         <p className="section-label">
-          01 — About
+          01  /  About
         </p>
       </div>
 
@@ -533,7 +533,7 @@ export default function About() {
               -inset-5
               rounded-[2.3rem]
               border
-              border-violet-400/10
+              border-maroon-400/10
               [transform:rotate(3deg)]
             "
             aria-hidden="true"
@@ -559,6 +559,7 @@ export default function About() {
               aspect-[4/5]
               overflow-hidden
               rounded-[1.7rem]
+              theme-card
               bg-white/[0.04]
               shadow-2xl
               shadow-black/40
@@ -621,6 +622,7 @@ export default function About() {
               -right-5
               rounded-2xl
               border
+              theme-chip
               border-white/10
               bg-[#0a0710]/80
               px-4
@@ -716,7 +718,7 @@ export default function About() {
                     w-[2px]
                     origin-top
                     scale-y-0
-                    bg-violet-400
+                    bg-maroon-400
                     transition-transform
                     duration-300
                     group-hover:scale-y-100

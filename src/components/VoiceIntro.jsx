@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 import { Play, Square, Mic } from "lucide-react";
 import { voiceIntro } from "../data/portfolio.js";
 
@@ -268,7 +268,7 @@ export default function VoiceIntro({
         gap-3
         rounded-full
         border
-        border-violet-500/30
+        border-maroon-500/30
         bg-white/[0.03]
         px-5
         py-3
@@ -277,9 +277,9 @@ export default function VoiceIntro({
         backdrop-blur-sm
         transition-all
         duration-300
-        hover:border-violet-300/60
+        hover:border-maroon-300/60
         hover:bg-white/[0.07]
-        hover:shadow-[0_0_30px_rgba(139,92,246,0.18)]
+        hover:shadow-[0_0_30px_rgba(116, 27, 56,0.18)]
         active:scale-95
       "
     >
@@ -294,8 +294,8 @@ export default function VoiceIntro({
           items-center
           justify-center
           rounded-full
-          bg-violet-500/20
-          text-violet-300
+          bg-maroon-500/20
+          text-maroon-300
           transition-transform
           duration-300
           group-hover:scale-110
@@ -345,7 +345,7 @@ export default function VoiceIntro({
                 eq-bar
                 w-[3px]
                 rounded-full
-                bg-violet-300
+                bg-maroon-300
               "
               style={{
                 height:
@@ -362,7 +362,7 @@ export default function VoiceIntro({
           className="
             text-ink-400
             transition-colors
-            group-hover:text-violet-300
+            group-hover:text-maroon-300
           "
         />
       )}

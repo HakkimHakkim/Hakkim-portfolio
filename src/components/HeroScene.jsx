@@ -1,4 +1,4 @@
-
+﻿
 import { Suspense, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 
@@ -320,12 +320,12 @@ export default function HeroScene({
 
       {useFullLighting && (
         <>
-          {/* Violet light */}
+          {/* orange light */}
 
           <pointLight
             position={[-2.5, 1.5, 2]}
             intensity={6}
-            color="#8b5cf6"
+            color="#f45112"
             distance={7}
             decay={2}
           />
@@ -391,3 +391,4 @@ export default function HeroScene({
     </Canvas>
   );
 }
+

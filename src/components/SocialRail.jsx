@@ -1,4 +1,4 @@
-import { Github, Linkedin } from "lucide-react";
+﻿import { Github, Linkedin } from "lucide-react";
 import { socials } from "../data/portfolio.js";
 
 const ICONS = { github: Github, linkedin: Linkedin };
@@ -15,7 +15,7 @@ export default function SocialRail() {
             target="_blank"
             rel="noreferrer"
             aria-label={social.label}
-            className="text-ink-400 transition-colors duration-200 hover:text-violet-300"
+            className="text-ink-400 transition-colors duration-200 hover:text-maroon-300"
           >
             {Icon ? <Icon size={18} /> : social.label}
           </a>
@@ -25,3 +25,4 @@ export default function SocialRail() {
     </div>
   );
 }
+

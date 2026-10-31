@@ -1,5 +1,4 @@
-import { Suspense, useRef } from "react";
-import { Canvas } from "@react-three/fiber";
+import { useRef } from "react";
 import {
   ArrowUpRight,
   Github,
@@ -8,50 +7,10 @@ import {
   Phone,
 } from "lucide-react";
 
-import Particles from "./3d/Particles.jsx";
 
 import { profile } from "../data/portfolio.js";
-import { useDeviceCapability } from "../hooks/useDeviceCapability.js";
 import { useScrollReveal } from "../hooks/useScrollReveal.js";
 
-
-
-/* ============================================================
-   CONTACT BACKDROP
-============================================================ */
-
-function ContactBackdrop() {
-  const {
-    isMobile,
-    prefersReducedMotion,
-  } = useDeviceCapability();
-
-  if (prefersReducedMotion) return null;
-
-  return (
-    <Canvas
-      dpr={[1, isMobile ? 1.25 : 1.5]}
-      camera={{
-        position: [0, 0, 5],
-        fov: 45,
-      }}
-      gl={{
-        antialias: false,
-        alpha: true,
-        powerPreference: "high-performance",
-      }}
-      style={{
-        pointerEvents: "none",
-      }}
-    >
-      <Suspense fallback={null}>
-        <Particles
-          count={isMobile ? 15 : 35}
-        />
-      </Suspense>
-    </Canvas>
-  );
-}
 
 
 /* ============================================================
@@ -82,22 +41,6 @@ export default function Contact() {
     >
 
       {/* ======================================================
-          BACKGROUND PARTICLES
-      ====================================================== */}
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          opacity-50
-        "
-      >
-        <ContactBackdrop />
-      </div>
-
-
-      {/* ======================================================
           AMBIENT GLOW
       ====================================================== */}
 
@@ -113,7 +56,7 @@ export default function Contact() {
           -translate-x-1/2
           -translate-y-1/2
           rounded-full
-          bg-violet-500/[0.08]
+          bg-maroon-500/[0.08]
           blur-[130px]
         "
       />
@@ -148,7 +91,7 @@ export default function Contact() {
         >
 
           <p className="section-label">
-            05 — Contact
+            05  /  Contact
           </p>
 
           <span
@@ -194,10 +137,10 @@ export default function Contact() {
                 text-[10px]
                 uppercase
                 tracking-[0.24em]
-                text-violet-300/80
+                text-maroon-300/80
               "
             >
-              Let’s connect
+              Let's connect
             </p>
 
 
@@ -249,6 +192,7 @@ export default function Contact() {
 
           <div
             className="
+              theme-card
               relative
               overflow-hidden
               rounded-[2rem]
@@ -272,7 +216,7 @@ export default function Contact() {
                 h-40
                 w-40
                 rounded-full
-                bg-violet-500/[0.10]
+                bg-maroon-500/[0.10]
                 blur-[70px]
               "
             />
@@ -329,9 +273,9 @@ export default function Contact() {
                   justify-center
                   rounded-full
                   border
-                  border-violet-300/15
-                  bg-violet-400/[0.08]
-                  text-violet-200
+                  border-maroon-300/15
+                  bg-maroon-400/[0.08]
+                  text-maroon-200
                 "
               >
                 <Mail size={15} />
@@ -347,6 +291,7 @@ export default function Contact() {
             <a
               href={`mailto:${profile.email}`}
               className="
+                theme-chip
                 group
                 relative
                 mt-5
@@ -360,8 +305,8 @@ export default function Contact() {
                 p-4
                 transition-all
                 duration-300
-                hover:border-violet-300/25
-                hover:bg-violet-400/[0.05]
+                hover:border-maroon-300/25
+                hover:bg-maroon-400/[0.05]
               "
             >
 
@@ -403,7 +348,7 @@ export default function Contact() {
                   duration-300
                   group-hover:-translate-y-0.5
                   group-hover:translate-x-0.5
-                  group-hover:text-violet-200
+                  group-hover:text-maroon-200
                 "
               />
 
@@ -415,6 +360,7 @@ export default function Contact() {
 <a
   href="tel:+917639289099"
   className="
+    theme-chip
     group
     relative
     mt-3
@@ -428,8 +374,8 @@ export default function Contact() {
     p-4
     transition-all
     duration-300
-    hover:border-violet-300/25
-    hover:bg-violet-400/[0.05]
+    hover:border-maroon-300/25
+    hover:bg-maroon-400/[0.05]
   "
 >
   <div className="min-w-0">
@@ -458,7 +404,7 @@ export default function Contact() {
       text-white/30
       transition-colors
       duration-300
-      group-hover:text-violet-200
+      group-hover:text-maroon-200
     "
   />
 
@@ -484,6 +430,7 @@ export default function Contact() {
                 target="_blank"
                 rel="noreferrer"
                 className="
+                  theme-chip
                   group
                   flex
                   items-center
@@ -495,8 +442,8 @@ export default function Contact() {
                   p-4
                   transition-all
                   duration-300
-                  hover:border-violet-300/25
-                  hover:bg-violet-400/[0.05]
+                  hover:border-maroon-300/25
+                  hover:bg-maroon-400/[0.05]
                 "
               >
 
@@ -506,7 +453,7 @@ export default function Contact() {
                     text-white/45
                     transition-colors
                     duration-300
-                    group-hover:text-violet-200
+                    group-hover:text-maroon-200
                   "
                 />
 
@@ -532,6 +479,7 @@ export default function Contact() {
                 target="_blank"
                 rel="noreferrer"
                 className="
+                  theme-chip
                   group
                   flex
                   items-center
@@ -543,8 +491,8 @@ export default function Contact() {
                   p-4
                   transition-all
                   duration-300
-                  hover:border-violet-300/25
-                  hover:bg-violet-400/[0.05]
+                  hover:border-maroon-300/25
+                  hover:bg-maroon-400/[0.05]
                 "
               >
 
@@ -554,7 +502,7 @@ export default function Contact() {
                     text-white/45
                     transition-colors
                     duration-300
-                    group-hover:text-violet-200
+                    group-hover:text-maroon-200
                   "
                 />
 
@@ -589,7 +537,7 @@ export default function Contact() {
   items-center
   gap-2
   rounded-full
-  bg-violet-500
+  bg-maroon-500
   px-7
   py-3.5
   font-medium
@@ -597,7 +545,7 @@ export default function Contact() {
   transition-all
   duration-300
   hover:-translate-y-1
-  hover:bg-violet-300
+  hover:bg-maroon-300
 "
 >
 
@@ -650,22 +598,8 @@ export default function Contact() {
               text-white/25
             "
           >
-            Built with React • FastAPI • AI
+            Built with React  |  FastAPI  |  AI
           </p>
-
-
-          <p
-            className="
-              font-mono
-              text-[9px]
-              uppercase
-              tracking-[0.18em]
-              text-white/25
-            "
-          >
-            © {new Date().getFullYear()} Hakkim
-          </p>
-
         </div>
 
       </div>

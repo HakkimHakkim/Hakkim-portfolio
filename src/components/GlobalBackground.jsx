@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+﻿import { useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -177,7 +177,7 @@ function ParticleField({
 
       <pointsMaterial
         size={0.028}
-        color="#c4b5fd"
+        color="#ff8a5b"
         transparent
         opacity={0.32}
         sizeAttenuation
@@ -377,7 +377,7 @@ function BackgroundCore({
         />
 
         <meshBasicMaterial
-          color="#8b5cf6"
+          color="#741b38"
           wireframe
           transparent
           opacity={0.055}
@@ -392,7 +392,7 @@ function BackgroundCore({
         />
 
         <meshBasicMaterial
-          color="#c4b5fd"
+          color="#ff8a5b"
           transparent
           opacity={0.08}
         />
@@ -430,7 +430,7 @@ function GlobalScene({
             speed={0.08}
             pointer={pointer}
             scrollVelocity={scrollVelocity}
-            color="#8b5cf6"
+            color="#741b38"
           />
 
           <EnergyRing
@@ -440,7 +440,7 @@ function GlobalScene({
             speed={-0.06}
             pointer={pointer}
             scrollVelocity={scrollVelocity}
-            color="#ec4899"
+            color="#a8adb5"
           />
 
           <EnergyRing
@@ -450,7 +450,7 @@ function GlobalScene({
             speed={0.04}
             pointer={pointer}
             scrollVelocity={scrollVelocity}
-            color="#a78bfa"
+            color="#ff8a5b"
           />
 
           <BackgroundCore

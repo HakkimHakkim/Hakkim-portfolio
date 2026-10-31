@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { Suspense, lazy, useEffect, useRef } from "react";
 import gsap from "gsap";
 import {
   ArrowDown,
@@ -6,10 +6,10 @@ import {
   FileDown,
 } from "lucide-react";
 
-import HeroScene from "./HeroScene.jsx";
-
 import { profile } from "../data/portfolio.js";
 import { useMouseParallax } from "../hooks/useMouseParallax.js";
+
+const HeroScene = lazy(() => import("./HeroScene.jsx"));
 
 export default function Hero() {
   const rootRef = useRef(null);
@@ -17,6 +17,7 @@ export default function Hero() {
   const nameRef = useRef(null);
   const roleRef = useRef(null);
   const ctaRef = useRef(null);
+  const statsRef = useRef(null);
   const sceneRef = useRef(null);
   const glowRef = useRef(null);
   const statusRef = useRef(null);
@@ -51,6 +52,7 @@ export default function Hero() {
             nameRef.current,
             roleRef.current,
             ctaRef.current,
+            statsRef.current,
             sceneRef.current,
             glowRef.current,
             statusRef.current,
@@ -230,6 +232,13 @@ export default function Hero() {
         },
         "-=0.2"
       );
+
+      tl.fromTo(
+        statsRef.current.children,
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.45, stagger: 0.08 },
+        "-=0.12"
+      );
     }, rootRef);
 
     return () => {
@@ -266,15 +275,17 @@ export default function Hero() {
       ref={rootRef}
       aria-label="Introduction"
       className="
+        hero-section
         relative
         flex
-        min-h-screen
+        min-h-[calc(100svh-76px)]
         w-full
         items-center
         overflow-hidden
         py-24
         sm:py-28
         lg:py-20
+        border-b border-silver-200/[0.08]
       "
     >
       {/* ======================================================
@@ -293,12 +304,12 @@ export default function Hero() {
           background: `
             radial-gradient(
               48% 50% at 74% 42%,
-              rgba(139, 92, 246, 0.16),
+              rgba(116, 27, 56, 0.16),
               transparent 72%
             ),
             radial-gradient(
               30% 35% at 88% 68%,
-              rgba(244, 114, 182, 0.08),
+              rgba(195, 199, 206, 0.07),
               transparent 72%
             )
           `,
@@ -319,7 +330,7 @@ export default function Hero() {
           -translate-x-1/2
           -translate-y-1/2
           rounded-full
-          bg-violet-500/[0.035]
+          bg-maroon-500/[0.035]
           blur-3xl
           lg:hidden
         "
@@ -356,7 +367,7 @@ export default function Hero() {
           className="
             relative
             z-20
-            order-2
+            order-1
             max-w-2xl
             md:order-1
           "
@@ -371,7 +382,7 @@ export default function Hero() {
               font-mono
               text-xs
               tracking-[0.12em]
-              text-violet-300/90
+              text-maroon-300/90
               sm:text-sm
             "
           >
@@ -387,14 +398,14 @@ export default function Hero() {
             className="
               mt-3
               font-display
-              text-[3.25rem]
+              text-2xl
               font-semibold
               leading-[0.9]
               tracking-[-0.055em]
               text-ink-100
-              sm:text-[4.5rem]
-              lg:text-[5.5rem]
-              xl:text-[6rem]
+              sm:text-3xl
+              lg:text-4xl
+              xl:text-4xl
             "
           >
             {profile.name}
@@ -410,11 +421,12 @@ export default function Hero() {
               mt-5
               max-w-xl
               font-display
-              text-lg
-              font-medium
-              leading-relaxed
-              text-ink-300
-              sm:text-2xl
+              text-[2.25rem]
+              font-semibold
+              leading-[1.05]
+              tracking-[-0.035em]
+              text-maroon-300
+              sm:text-5xl
             "
           >
             {profile.role}
@@ -427,7 +439,7 @@ export default function Hero() {
                 text-sm
                 font-normal
                 leading-relaxed
-                text-ink-500
+                text-silver-400
                 sm:text-lg
               "
             >
@@ -475,7 +487,7 @@ export default function Hero() {
                   w-full
                   animate-ping
                   rounded-full
-                  bg-emerald-400
+                  bg-silver-300
                   opacity-50
                 "
               />
@@ -487,7 +499,7 @@ export default function Hero() {
                   h-2
                   w-2
                   rounded-full
-                  bg-emerald-400
+                  bg-silver-300
                 "
               />
             </span>
@@ -538,25 +550,25 @@ export default function Hero() {
                 items-center
                 gap-3
                 overflow-hidden
-                rounded-full
+                rounded-md
                 border
-                border-violet-300/30
-                bg-violet-400/[0.10]
+                border-maroon-400/70
+                bg-maroon-500
                 px-5
                 py-3
                 text-sm
                 font-semibold
-                text-white
-                shadow-[0_0_30px_rgba(139,92,246,0.10)]
+                text-silver-100
+                shadow-[0_0_30px_rgba(116,27,56,0.10)]
                 transition-all
                 duration-300
                 hover:-translate-y-0.5
-                hover:border-violet-300/60
-                hover:bg-violet-400/[0.17]
-                hover:shadow-[0_0_45px_rgba(139,92,246,0.20)]
+                hover:border-maroon-200
+                hover:bg-maroon-400
+                hover:shadow-[0_0_45px_rgba(116,27,56,0.20)]
                 focus:outline-none
                 focus:ring-2
-                focus:ring-violet-300/40
+                focus:ring-maroon-300/40
                 focus:ring-offset-2
                 focus:ring-offset-transparent
                 sm:px-6
@@ -610,10 +622,10 @@ export default function Hero() {
                 inline-flex
                 items-center
                 gap-2
-                rounded-full
+                rounded-md
                 border
-                border-white/[0.08]
-                bg-white/[0.025]
+                border-silver-300/25
+                bg-silver-300/[0.04]
                 px-5
                 py-3
                 text-sm
@@ -622,12 +634,12 @@ export default function Hero() {
                 transition-all
                 duration-300
                 hover:-translate-y-0.5
-                hover:border-white/20
-                hover:bg-white/[0.05]
-                hover:text-ink-100
+                hover:border-silver-200/50
+                hover:bg-silver-300/[0.08]
+                hover:text-silver-100
                 focus:outline-none
                 focus:ring-2
-                focus:ring-white/20
+                focus:ring-silver-200/30
                 sm:py-3.5
               "
             >
@@ -645,6 +657,19 @@ export default function Hero() {
             </a>
           </div>
 
+          <div ref={statsRef} className="mt-8 grid max-w-lg grid-cols-3 gap-3">
+            {[
+              { value: "03", label: "Featured projects" },
+              { value: "08", label: "Skill areas" },
+              { value: "AI + Web", label: "Areas of focus" },
+            ].map((item) => (
+              <div key={item.label} className="theme-card min-h-[76px] px-3 py-3 sm:px-4">
+                <p className="font-display text-sm font-semibold text-silver-100 sm:text-base">{item.value}</p>
+                <p className="mt-1 text-[8px] uppercase tracking-[.12em] text-silver-500 sm:text-[9px]">{item.label}</p>
+              </div>
+            ))}
+          </div>
+
           {/* ==================================================
               SUPPORTING LINE
           =================================================== */}
@@ -655,7 +680,7 @@ export default function Hero() {
               max-w-md
               text-[11px]
               leading-relaxed
-              text-white/25
+              text-silver-500
               sm:mt-7
               sm:text-xs
             "
@@ -673,7 +698,8 @@ export default function Hero() {
           ref={sceneRef}
           className="
             relative
-            order-1
+            hero-robot-stage
+            order-2
             h-[40vh]
             min-h-[290px]
             w-full
@@ -683,7 +709,16 @@ export default function Hero() {
             lg:h-[72vh]
           "
         >
-          <HeroScene pointer={pointer} />
+          <Suspense
+            fallback={
+              <div
+                aria-hidden="true"
+                className="absolute inset-6 rounded-2xl border border-silver-200/[0.06] bg-silver-200/[0.015]"
+              />
+            }
+          >
+            <HeroScene pointer={pointer} />
+          </Suspense>
         </div>
       </div>
 
